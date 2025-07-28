@@ -28,7 +28,7 @@ const MinimalTreeItemComponent = React.forwardRef<
 
 MinimalTreeItemComponent.displayName = 'MinimalTreeItemComponent';
 
-export const MenuTreeComponent = () => {
+export const MenuTree = () => {
   const { 
     disableSubmit,
     setDisableSubmit,

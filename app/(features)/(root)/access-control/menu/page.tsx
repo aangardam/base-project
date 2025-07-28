@@ -2,7 +2,7 @@
 
 import { RootLayout } from "@/shared/components/layout/root-layout"
 import { Card, CardContent } from "@/shared/components/ui/card"
-import { MenuTreeComponent } from "./components/menu-tree"
+import { MenuTree } from "./components/menu-tree"
 
 
 export default function MenuPage() {
@@ -10,7 +10,7 @@ export default function MenuPage() {
     <RootLayout title="Menu">
         <Card className="rounded-2xl shadow-md border border-gray-200 bg-white">
             <CardContent>
-                <MenuTreeComponent />
+                <MenuTree />
             </CardContent>
         </Card>
         <Card className="rounded-2xl shadow-md border border-gray-200 bg-white">
