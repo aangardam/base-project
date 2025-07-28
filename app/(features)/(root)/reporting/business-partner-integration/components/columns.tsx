@@ -10,8 +10,6 @@ import { TBusinessPartnerIntegration } from "../interface/business-partner-integ
 import { encrypt, formatRupiah } from "@/shared/utils/utils"
 
 
-
-
 export const columns: ColumnDef<TBusinessPartnerIntegration>[] = [
   {
     accessorKey: "id",
@@ -41,7 +39,10 @@ export const columns: ColumnDef<TBusinessPartnerIntegration>[] = [
 
         </Button>
       )
-    }
+    },
+    meta: {
+      label: "Request ID", // dipakai untuk dropdown column toggle
+    },
   },
   {
     accessorKey: "reportId",
@@ -61,7 +62,10 @@ export const columns: ColumnDef<TBusinessPartnerIntegration>[] = [
 
         </Button>
       )
-    }
+    },
+    meta: {
+      label: "Report ID", // dipakai untuk dropdown column toggle
+    },
   },
   {
     accessorKey: "reportDate",
@@ -81,7 +85,10 @@ export const columns: ColumnDef<TBusinessPartnerIntegration>[] = [
 
         </Button>
       )
-    }
+    },
+    meta: {
+      label: "Report Date", // dipakai untuk dropdown column toggle
+    },
   },
   {
     accessorKey: "invoiceNo",
@@ -101,7 +108,10 @@ export const columns: ColumnDef<TBusinessPartnerIntegration>[] = [
 
         </Button>
       )
-    }
+    },
+    meta: {
+      label: "Invoice No.", // dipakai untuk dropdown column toggle
+    },
   },
   {
     accessorKey: "invoiceDate",
@@ -121,7 +131,10 @@ export const columns: ColumnDef<TBusinessPartnerIntegration>[] = [
 
         </Button>
       )
-    }
+    },
+    meta: {
+      label: "Invoice Date", // dipakai untuk dropdown column toggle
+    },
   },
   {
     accessorKey: "transactionDate",
@@ -141,7 +154,10 @@ export const columns: ColumnDef<TBusinessPartnerIntegration>[] = [
 
         </Button>
       )
-    }
+    },
+    meta: {
+      label: "Transaction Date", // dipakai untuk dropdown column toggle
+    },
   },
   {
     accessorKey: "paidAt",
@@ -161,7 +177,10 @@ export const columns: ColumnDef<TBusinessPartnerIntegration>[] = [
 
         </Button>
       )
-    }
+    },
+    meta: {
+      label: "Paid At", // dipakai untuk dropdown column toggle
+    },
   },
   {
     accessorKey: "businessPartner",
@@ -181,7 +200,10 @@ export const columns: ColumnDef<TBusinessPartnerIntegration>[] = [
 
         </Button>
       )
-    }
+    },
+    meta: {
+      label: "Business Partner", // dipakai untuk dropdown column toggle
+    },
   },
   {
     accessorKey: "paymentAmount",
@@ -201,7 +223,10 @@ export const columns: ColumnDef<TBusinessPartnerIntegration>[] = [
 
         </Button>
       )
-    }
+    },
+    meta: {
+      label: "Payment Amount", // dipakai untuk dropdown column toggle
+    },
   },
   {
     accessorKey: "totalAmount",
@@ -221,6 +246,9 @@ export const columns: ColumnDef<TBusinessPartnerIntegration>[] = [
 
         </Button>
       )
+    },
+    meta: {
+      label: "Total Amount", // dipakai untuk dropdown column toggle
     },
     cell:({row}) =>{
       return(

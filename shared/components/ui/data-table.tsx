@@ -29,6 +29,7 @@ import { ChevronDown, Loader } from "lucide-react";
 import { Input } from "./input";
 import { PaginationTable } from "./pagination-table";
 import { FaFileExcel, FaFilePdf } from "react-icons/fa";
+import { capitalizeFirst } from "@/shared/utils/utils";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -46,6 +47,7 @@ interface DataTableProps<TData, TValue> {
   nameAddButton?: string;
   isExportPDF?: boolean;
   isExportExcel?: boolean;
+  defaultHiddenColumns?: string[];
 }
 
 // type ColumnSort = {
@@ -68,11 +70,21 @@ export function DataTable<TData, TValue>({
     onClickAdd,
     nameAddButton,
     isExportPDF,
-    isExportExcel
+    isExportExcel,
+    defaultHiddenColumns
     
 }: DataTableProps<TData, TValue>) {
 
-    const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+    // const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+
+    const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(() => {
+        const hiddenColumns = defaultHiddenColumns || [];
+        const visibility: VisibilityState = {};
+        hiddenColumns.forEach((key) => {
+          visibility[key] = false;
+        });
+        return visibility;
+    });
 
     const debounced = useDebouncedCallback(
         // function
@@ -166,6 +178,10 @@ export function DataTable<TData, TValue>({
                                         column.columnDef.enableHiding !== false,
                                 )
                                 .map((column) => {
+                                    // console.log((column.columnDef.meta as { label?: string })?.label)
+                                    // console.log(column.columnDef.meta)
+                                    const label = (column.columnDef.meta as { label?: string })?.label || column.id;
+                                    const columnName = capitalizeFirst(label);
                                     
                                     // const columnName = column.id
                                     //     .replace(/_/g, ' ')
@@ -174,18 +190,24 @@ export function DataTable<TData, TValue>({
                                     //         return a.toUpperCase();
                                     //     });
 
-                                    const columnName = column.id
+                                    // const columnName = capitalizeFirst(column.id)
+                                    // console.log(columnName)
                                     
                                     return (
                                         <DropdownMenuCheckboxItem
                                             key={column.id}
-                                            className="capitalize"
+                                            // className="capitalize"
                                             checked={column.getIsVisible()}
                                             onCheckedChange={(value) =>
                                                 column.toggleVisibility(!!value)
                                             }
                                         >
-                                            {columnName}
+                                            {/* {columnName}
+                                            {column.getIsVisible() ? " (d)" : ""} */}
+                                            {(defaultHiddenColumns || []).includes(column.id)
+                                                ? columnName
+                                                : `${columnName} (d)`}
+                                            
                                         </DropdownMenuCheckboxItem>
                                     );
                                 })}
