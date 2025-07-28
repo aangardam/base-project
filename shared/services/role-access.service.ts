@@ -10,9 +10,9 @@ export class RoleAccessService extends RequestAdapter {
         super();
     }
 
-    public async getRoleAccess(roleId:number, userId:number):Promise<IBaseResponse<any>>{
+    public async getRoleAccess(roleId:number, userId:number):Promise<IBaseResponse<Array<any>>>{
         try {
-            const { data } = await this.sendGetRequest<IBaseResponse<any>>(
+            const { data } = await this.sendGetRequest<IBaseResponse<Array<any>>>(
                 `${endpoint.access}/access-management/role/access?roleId=${roleId}&userId=${userId}`
             )
             return data

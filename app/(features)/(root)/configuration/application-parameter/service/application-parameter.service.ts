@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { IBaseResponse, IPayloadGetList } from "@/shared/interfaces/global";
+import { IBaseResponse, TPayloadGetList } from "@/shared/interfaces/global";
 import { RequestAdapter } from "@/shared/lib/http/request-adapter";
 import { TGetListResponse } from "../interfaces/application-parameter";
 import endpoint from "@/shared/lib/endpoin";
@@ -12,11 +12,11 @@ export class ApplicationParameterService extends RequestAdapter {
     }
     
     public async getList(
-        payload: IPayloadGetList,
+        payload: TPayloadGetList,
     ): Promise<IBaseResponse<Array<TGetListResponse>>> {
         try {
             const { data } = await this.sendPostRequest<
-                IPayloadGetList,
+                TPayloadGetList,
                 IBaseResponse<Array<TGetListResponse>>
             >(`${endpoint.access}/access-management/menu/list`, payload);
 

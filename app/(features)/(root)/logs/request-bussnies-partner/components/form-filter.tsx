@@ -118,7 +118,7 @@ const FormFilter = () => {
                                 Reset Filter
                             </Button>
                             <Button
-                                variant="primary"
+                                variant="primaryGradient"
                                 type="submit"
                                 className="px-6"
                             >

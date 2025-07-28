@@ -65,7 +65,7 @@ const FormApplicationParameter = (props:PropTypes) => {
                   Cancel
               </Button>
               <Button 
-                variant="primary"
+                variant="primaryGradient"
                 type="submit"
                 className="px-5 w-[130px]"
               >

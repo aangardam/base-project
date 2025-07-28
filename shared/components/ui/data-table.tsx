@@ -172,41 +172,28 @@ export function DataTable<TData, TValue>({
                                 .getAllColumns()
                                 .filter(
                                     (column) =>
-                                        column.getCanHide() &&
+                                        // column.getCanHide() &&
                                         column.id !== 'actions' &&
-                                        column.id !== 'id' &&
-                                        column.columnDef.enableHiding !== false,
+                                        column.id !== 'id'
                                 )
                                 .map((column) => {
-                                    // console.log((column.columnDef.meta as { label?: string })?.label)
-                                    // console.log(column.columnDef.meta)
                                     const label = (column.columnDef.meta as { label?: string })?.label || column.id;
                                     const columnName = capitalizeFirst(label);
-                                    
-                                    // const columnName = column.id
-                                    //     .replace(/_/g, ' ')
-                                    //     .toLowerCase()
-                                    //     .replace(/(?:^|\s)\S/g, function (a) {
-                                    //         return a.toUpperCase();
-                                    //     });
-
-                                    // const columnName = capitalizeFirst(column.id)
-                                    // console.log(columnName)
                                     
                                     return (
                                         <DropdownMenuCheckboxItem
                                             key={column.id}
-                                            // className="capitalize"
                                             checked={column.getIsVisible()}
+                                            disabled={!column.getCanHide()}
                                             onCheckedChange={(value) =>
                                                 column.toggleVisibility(!!value)
                                             }
                                         >
-                                            {/* {columnName}
-                                            {column.getIsVisible() ? " (d)" : ""} */}
-                                            {(defaultHiddenColumns || []).includes(column.id)
+                                             {columnName}
+                                            {/*{column.getIsVisible() ? " (d)" : ""} */}
+                                            {/* {(defaultHiddenColumns || []).includes(column.id)
                                                 ? columnName
-                                                : `${columnName} (d)`}
+                                                : `${columnName} (d)`} */}
                                             
                                         </DropdownMenuCheckboxItem>
                                     );

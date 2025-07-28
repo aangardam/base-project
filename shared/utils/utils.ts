@@ -3,6 +3,7 @@ import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import CryptoJS from 'crypto-js';
 
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
@@ -25,11 +26,11 @@ export function filterByUrl(array: any, url: string): any[] {
           }
       }
       if (
-          item.submenu &&
-          Array.isArray(item.submenu) &&
-          item.submenu.length > 0
+          item.subMenu &&
+          Array.isArray(item.subMenu) &&
+          item.subMenu.length > 0
       ) {
-          const filteredSubmenu = filterByUrl(item.submenu, url);
+          const filteredSubmenu = filterByUrl(item.subMenu, url);
           result = result.concat(filteredSubmenu);
       }
   });
@@ -50,103 +51,103 @@ export const extractUrls = (menuItems: any): string[] => {
         }
     });
     return urls;
-  };
+};
   
-  export const camelToSnake = (str: string) => {
-    return str.replace(/([A-Z])/g, '_$1').toLowerCase();
-  }
+export const camelToSnake = (str: string) => {
+return str.replace(/([A-Z])/g, '_$1').toLowerCase();
+}
   
-  export type Variant =
-      | 'success'
-      | 'waiting'
-      | 'destructive'
-      | 'request'
-      | 'expired'
-      | 'paid'
-      | 'paidNotif'
-      | 'danger'
-      | 'gray'
-      | 'cancel';
+export type Variant =
+    | 'success'
+    | 'waiting'
+    | 'destructive'
+    | 'request'
+    | 'expired'
+    | 'paid'
+    | 'paidNotif'
+    | 'danger'
+    | 'gray'
+    | 'cancel';
+
+//get badge color for dashboard
+export function getBadgeColor(status: string): Variant {
+    let variant: Variant = 'success';
+
+    switch (status) {
+        case 'Success':
+            variant = 'success';
+            break;
+        case 'Waiting':
+            variant = 'waiting';
+            break;
+        case 'Failed':
+            variant = 'destructive';
+            break;
+        case 'Request':
+            variant = 'request';
+            break;
+        case 'Expired':
+            variant = 'expired';
+            break;
+        case 'Paid':
+            variant = 'paid';
+            break;
+        case 'Paid (Notif)':
+            variant = 'paidNotif';
+            break;
+        case 'Cancel':
+            variant = 'cancel';
+            break;
+        case 'Danger':
+            variant = 'danger';
+            break;
+        case 'Gray':
+            variant = 'gray';
+            break;
+        default:
+            console.error(`Unknown status: ${status}`);
+            break;
+    }
+
+    return variant;
+}
   
-  //get badge color for dashboard
-  export function getBadgeColor(status: string): Variant {
-      let variant: Variant = 'success';
+//format currency
+export function formatCurrency(amount: number | null, currency = 'IDR') {
+    console.log(amount, currency);
+    if (amount === null || currency === null) {
+        return '-';
+    }
+    return new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: currency,
+    }).format(amount);
+}
+
+//format number witout currency
+export function formatNumber(amount: number, locale = 'en-US') {
+    return new Intl.NumberFormat(locale, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    }).format(amount);
+}
   
-      switch (status) {
-          case 'Success':
-              variant = 'success';
-              break;
-          case 'Waiting':
-              variant = 'waiting';
-              break;
-          case 'Failed':
-              variant = 'destructive';
-              break;
-          case 'Request':
-              variant = 'request';
-              break;
-          case 'Expired':
-              variant = 'expired';
-              break;
-          case 'Paid':
-              variant = 'paid';
-              break;
-          case 'Paid (Notif)':
-              variant = 'paidNotif';
-              break;
-          case 'Cancel':
-              variant = 'cancel';
-              break;
-          case 'Danger':
-              variant = 'danger';
-              break;
-          case 'Gray':
-              variant = 'gray';
-              break;
-          default:
-              console.error(`Unknown status: ${status}`);
-              break;
-      }
+export function formatRupiah(value: string): string {
+    const numberString = value.replace(/[^,\d]/g, '').toString();
+    const split = numberString.split(',');
+    const sisa = split[0].length % 3;
+    let rupiah = split[0].substr(0, sisa);
+    const ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+    if (ribuan) {
+        const separator = sisa ? '.' : '';
+        rupiah += separator + ribuan.join('.');
+    }
+
+    return split[1] !== undefined ? rupiah + ',' + split[1] : rupiah;
+}
   
-      return variant;
-  }
-  
-  //format currency
-  export function formatCurrency(amount: number | null, currency = 'IDR') {
-      console.log(amount, currency);
-      if (amount === null || currency === null) {
-          return '-';
-      }
-      return new Intl.NumberFormat('id-ID', {
-          style: 'currency',
-          currency: currency,
-      }).format(amount);
-  }
-  
-  //format number witout currency
-  export function formatNumber(amount: number, locale = 'en-US') {
-      return new Intl.NumberFormat(locale, {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-      }).format(amount);
-  }
-  
-  export function formatRupiah(value: string): string {
-      const numberString = value.replace(/[^,\d]/g, '').toString();
-      const split = numberString.split(',');
-      const sisa = split[0].length % 3;
-      let rupiah = split[0].substr(0, sisa);
-      const ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-  
-      if (ribuan) {
-          const separator = sisa ? '.' : '';
-          rupiah += separator + ribuan.join('.');
-      }
-  
-      return split[1] !== undefined ? rupiah + ',' + split[1] : rupiah;
-  }
-  
-  export function maxMinLength(
+export function maxMinLength(
       e: React.FormEvent<HTMLInputElement>,
       minValue: number,
       maxValue: number,
@@ -257,6 +258,15 @@ export function capitalizeFirst(str: string) {
     if (!str) return '';
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+export function getMenuPermission(menuPermission:any, url:string){
+    const menu = filterByUrl(menuPermission, url);
+    return menu;
+}
+
+export function extractPermissionNames(functions: any[] = []) {
+    return functions.map((item) => item.name);
+  };
 
   
 

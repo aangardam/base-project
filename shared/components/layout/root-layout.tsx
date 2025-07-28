@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { useAuthRedirect } from "@/shared/hooks/use-auth-redirect";
 import { useLogoutListener } from "@/shared/hooks/use-logout-listener";
 import Loading from "@/shared/components/commons/loading/loading";
+import { Toaster } from "../ui/toaster";
 // import { Sidebar } from "./sidebar";
 
 type RootLayoutProps = {
@@ -41,6 +42,7 @@ export function RootLayout({ children, title }: RootLayoutProps) {
                   {children}
                 </motion.div>
               </main>
+              <Toaster />
               
 
               <footer className="p-4 text-sm text-gray-500 border-t bg-white">

@@ -79,7 +79,7 @@ const Sidebar = () => {
           </div>
           ):(
             <div className="flex flex-col">
-              {dataRoleAccess?.data?.menuAccess.map((menu:any, index:any) => (
+              {(dataRoleAccess?.data as any)?.menuAccess?.map((menu:any, index:any) => (
                 <SidebarMenu 
                   key={index} 
                   menu={menu} 

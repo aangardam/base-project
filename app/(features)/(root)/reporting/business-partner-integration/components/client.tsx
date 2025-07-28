@@ -170,7 +170,7 @@ export default function Client() {
         totalFilteredData={totalFilteredData}
         isExportPDF={true}
         isExportExcel={true}
-        defaultHiddenColumns={["paidAt", "requestId"]}
+        // defaultHiddenColumns={["paidAt", "requestId"]}
       />
 
     </div>

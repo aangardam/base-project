@@ -14,7 +14,7 @@ export interface IBaseResponse<T> {
     total?: number;
 }
 
-export type IPayloadGetList = {
+export type TPayloadGetList = {
     order: {
         column: string;
         dir: string;
@@ -25,4 +25,12 @@ export type IPayloadGetList = {
     };
     length: number;
     start: number;
+}
+
+export type TUserMenuInfo = {
+    userId?: number;
+    roleId?: number;
+    menuId?: number;
+    parentId?: number;
+    ipAddress?: string;
 }

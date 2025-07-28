@@ -22,6 +22,7 @@ export const columns: ColumnDef<TBusinessPartnerIntegration>[] = [
   },
   {
     accessorKey: "requestId",
+    enableHiding: false,
     header:({column}) => {
       return(
         <Button
@@ -41,7 +42,7 @@ export const columns: ColumnDef<TBusinessPartnerIntegration>[] = [
       )
     },
     meta: {
-      label: "Request ID", // dipakai untuk dropdown column toggle
+      label: "Request ID",
     },
   },
   {

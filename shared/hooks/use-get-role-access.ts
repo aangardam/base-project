@@ -39,8 +39,9 @@ const useGetRoleAccess = () => {
     });
 
     useEffect(() => {
+      // console.log(dataRoleAccess);
       if(dataRoleAccess){
-        setMenuPermission(dataRoleAccess?.data?.menus)
+        setMenuPermission((dataRoleAccess?.data as any)?.menuAccess)
         // setDataSidebar(dataRoleAccess);
       }
     }, [dataRoleAccess, setMenuPermission]);

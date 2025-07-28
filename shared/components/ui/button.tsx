@@ -36,6 +36,7 @@ const buttonVariants = cva(
                     'bg-yellow-500 text-slate-50 hover:bg-yellow-600 dark:bg-yellow-700 dark:text-slate-50 dark:hover:bg-yellow-800',
                 primary: 'bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-600 dark:text-white dark:hover:bg-blue-700',
                 outlineDefault:'text-blue-700 hover:text-white border border-blue-700 hover:bg-gradient-to-r from-sky-400 to-indigo-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800',
+                primaryGradient: 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white hover:bg-blue-700 dark:bg-blue-600 dark:text-white dark:hover:bg-blue-700',
             },
             size: {
                 default: 'h-10 px-4 py-2',
