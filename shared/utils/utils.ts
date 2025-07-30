@@ -266,7 +266,25 @@ export function getMenuPermission(menuPermission:any, url:string){
 
 export function extractPermissionNames(functions: any[] = []) {
     return functions.map((item) => item.name);
-  };
+};
+
+export type DialogSize = "sm" | "md" | "lg" | "xl" | "full";
+export function getDialogSizeClass(size: DialogSize = "lg"){
+    switch (size) {
+    case "sm":
+        return "w-full max-w-md";
+    case "md":
+        return "w-full max-w-lg";
+    case "lg":
+        return "w-full max-w-3xl";
+    case "xl":
+        return "w-full max-w-5xl";
+    case "full":
+        return "w-full h-screen";
+    default:
+        return "w-full max-w-3xl";
+    }
+}
 
   
 

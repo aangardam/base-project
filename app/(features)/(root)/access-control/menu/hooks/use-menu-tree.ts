@@ -15,9 +15,7 @@ const useMenuTree = () => {
     const { user, menuPermission, userMenuInfo } = useUserStore();
     const [disableSubmit, setDisableSubmit] = useState(true);
     const [menuItems, setMenuItems] = useState<TreeItems<TMenuTree>>([]);
-    const [prevMenuItems, setPrevMenuItems] = useState<TreeItems<TMenuTree>>([]);
-    
-   
+    const [prevMenuItems, setPrevMenuItems] = useState<TreeItems<TMenuTree>>([]);   
 
     const menuTree = new MenuService();
     const { data: dataMenuTree} = useQuery({

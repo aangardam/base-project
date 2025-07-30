@@ -1,8 +1,8 @@
 import { Form, FormField, FormItem, FormMessage } from "@/shared/components/ui/form";
 import FormInput from "@/shared/components/form/form-input";
 import { Button } from "@/shared/components/ui/button";
-import { Separator } from "@/shared/components/ui/separator";
-import * as FaIcons from 'react-icons/fa';
+// import { Separator } from "@/shared/components/ui/separator";
+// import * as FaIcons from 'react-icons/fa';
 import { useLoginForm } from "../hooks/use-login-form";
 import { toast } from "@/shared/hooks/use-toast";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -20,7 +20,7 @@ type TypeForm = {
   type: string;
 };
 
-export default function LoginForm({ onTypeChange }: PropTypes) {
+export default function FormLogin({ onTypeChange }: PropTypes) {
   const {
     form,
     recaptchaValue,
@@ -28,7 +28,7 @@ export default function LoginForm({ onTypeChange }: PropTypes) {
     typeForm,
     isLoginPending,
     onSubmit,
-    onGoogleLogin,
+    // onGoogleLogin,
     handleForgotPassword,
     handleResendVerificationEmail,
     token,
@@ -38,8 +38,7 @@ export default function LoginForm({ onTypeChange }: PropTypes) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        {/* Login Buttons */}
-        <div className="flex justify-between gap-x-5">
+        {/* <div className="flex justify-between gap-x-5">
             <Button
                 className=" w-full"
                 variant="secondary"
@@ -59,13 +58,11 @@ export default function LoginForm({ onTypeChange }: PropTypes) {
                 <FaIcons.FaKey className="mr-2" /> SSO
             </Button>
         </div>
-
-        {/* Separator */}
         <div className="flex items-center w-full gap-2 my-2">
           <Separator className="flex-1 my-4" />
           <span className="text-sm text-gray-500 whitespace-nowrap">Or sign in with</span>
           <Separator className="flex-1 my-4" />
-        </div>
+        </div> */}
 
         {/* Form Input Fields */}
         {!token ? (
@@ -178,8 +175,12 @@ export default function LoginForm({ onTypeChange }: PropTypes) {
                 />
             </DialogAction>
 
-          {/* Resend Verification */}
             <div className="flex justify-center items-baseline mt-5">
+              <span className="text-gray-500 text-sm">Don{"'"}t have an account? <b> Contact admin settler </b></span>
+            </div>
+            {/* Resend Verification */}
+            <div className="flex justify-center items-baseline mt-2">
+              
                 <span className="text-gray-500 text-sm">Email verification not received?</span>
                 <p
                 onClick={handleResendVerificationEmail}

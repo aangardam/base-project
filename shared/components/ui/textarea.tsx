@@ -3,10 +3,18 @@ import * as React from "react"
 
 // import { cn } from "@/shared/lib/utils"
 
+export interface InputProps
+    extends React.ComponentProps<"textarea"> {
+    isPassword?: boolean;
+    showPasswordIcon?: boolean;
+    isDisabled?: boolean;
+    isReadonly?: boolean;
+}
+
 const Textarea = React.forwardRef<
   HTMLTextAreaElement,
-  React.ComponentProps<"textarea">
->(({ className, ...props }, ref) => {
+  InputProps
+>(({ className, isDisabled,isReadonly, ...props }, ref) => {
   return (
     <textarea
       className={cn(
@@ -14,6 +22,8 @@ const Textarea = React.forwardRef<
         className
       )}
       ref={ref}
+      disabled={isDisabled}
+      readOnly={isReadonly}
       {...props}
     />
   )

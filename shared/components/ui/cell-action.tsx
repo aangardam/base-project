@@ -5,6 +5,7 @@ import DialogEdit from "./dialog-edit"
 import { Search } from "lucide-react";
 import DialogView from "./dialog-view";
 import Link from "next/link";
+import { DialogSize } from "@/shared/utils/utils";
 
 
 interface HasId {
@@ -21,6 +22,9 @@ interface FormDialogGlobalProps<T> {
   params?: string;
   isPopUp?: boolean;
   link?: string;
+  dialogSizeEdit?: DialogSize;
+  dialogSizeView?: DialogSize;
+
 }
   
 export function CellAction<T extends HasId>(props: FormDialogGlobalProps<T>) {
@@ -35,7 +39,9 @@ export function CellAction<T extends HasId>(props: FormDialogGlobalProps<T>) {
     formComponent: FormComponent,
     isPopUp = true,
     params,
-    link = ''
+    link = '',
+    dialogSizeEdit = 'md',
+    dialogSizeView = 'md',
   } = props;
 
   const handleDelete = () => {
@@ -46,7 +52,7 @@ export function CellAction<T extends HasId>(props: FormDialogGlobalProps<T>) {
     <div className="flex justify-center">
       {actionView && (
         isPopUp && FormComponent ? (
-          <DialogView>
+          <DialogView size={dialogSizeView}>
             {FormComponent && <FormComponent data={row} />}
           </DialogView>
         ) : (
@@ -60,7 +66,7 @@ export function CellAction<T extends HasId>(props: FormDialogGlobalProps<T>) {
       )}
 
       {actionUpdate && FormComponent && (
-        <DialogEdit title={title}>
+        <DialogEdit title={title} size={dialogSizeEdit}>
           <FormComponent data={row} />
         </DialogEdit>
       )}

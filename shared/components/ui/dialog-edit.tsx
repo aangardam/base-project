@@ -9,13 +9,15 @@ import {
   DialogTrigger,
 } from "@/shared/components/ui/dialog"
 import { ReactElement, useState, cloneElement, isValidElement } from "react";
+import { DialogSize, getDialogSizeClass } from "@/shared/utils/utils";
 
 interface formDialogProps {
   children: ReactElement<{ onClose?: () => void }>;
   title?: string;
+  size?: DialogSize;
 }
 
-const DialogEdit = ({ children, title } : formDialogProps) => {
+const DialogEdit = ({ children, title, size } : formDialogProps) => {
   const [open, setOpen] = useState(false);
   const childrenWithOnClose = isValidElement(children)
     ? cloneElement(children, { onClose: () => setOpen(false) })
@@ -29,7 +31,7 @@ const DialogEdit = ({ children, title } : formDialogProps) => {
             </Button>
             
         </DialogTrigger>
-        <DialogContent className="lg:w-3/4  p-4 max-h-[97vh]">
+        <DialogContent className={`p-4 max-h-[97vh] ${getDialogSizeClass(size)}`}>
             <DialogHeader>
                 <DialogTitle>{title}</DialogTitle>
                 <DialogDescription className="text-sm">View/Update Menu. Click save when you are done.</DialogDescription>

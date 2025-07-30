@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { IBaseResponse } from "@/shared/interfaces/global";
+import { IBaseResponse, TPayloadGetList } from "@/shared/interfaces/global";
 import endpoint from "@/shared/lib/endpoin";
 import { RequestAdapter } from "@/shared/lib/http/request-adapter";
+import { TMenuRequestBody, TMenuResponse } from "../interfaces/menu";
 
 
 export class MenuService extends RequestAdapter {
@@ -20,4 +21,33 @@ export class MenuService extends RequestAdapter {
             throw error;
         }
     }
+
+    public async getList(
+        payload: TPayloadGetList,
+    ): Promise<IBaseResponse<Array<TMenuResponse>>> {
+        try {
+            const { data } = await this.sendPostRequest<
+                TPayloadGetList,
+                IBaseResponse<Array<TMenuResponse>>
+            >(`${endpoint.access}/access-management/menu/list`, payload);
+
+            return data;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    public async updateMenu(body:TMenuRequestBody): Promise<IBaseResponse<string>> {
+        try {
+            const { data } = await this.sendPutRequest<
+                TMenuRequestBody,
+                IBaseResponse<string>
+            >(`${endpoint.access}/access-management/menu/update`, body);
+
+            return data;
+        } catch (error) {
+            throw error;
+        }
+    }
+
 }

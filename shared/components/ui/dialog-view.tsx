@@ -11,12 +11,14 @@ import {
 import { ReactElement, useState, cloneElement, isValidElement } from "react";
 import { Search } from "lucide-react";
 import { Separator } from "@radix-ui/react-separator";
+import { DialogSize, getDialogSizeClass } from "@/shared/utils/utils";
 
 interface formDialogProps {
   children: ReactElement<{ onClose?: () => void }>;
+  size?: DialogSize;
 }
 
-const DialogView = ({ children } : formDialogProps) => {
+const DialogView = ({ children, size } : formDialogProps) => {
   const [open, setOpen] = useState(false);
   if (!children) return null;
   const childrenWithOnClose = isValidElement(children)
@@ -32,7 +34,7 @@ const DialogView = ({ children } : formDialogProps) => {
             </Button>
             
         </DialogTrigger>
-        <DialogContent className="lg:w-3/4  p-4 max-h-[97vh]">
+        <DialogContent className={`p-4 max-h-[97vh] ${getDialogSizeClass(size)}`}>
             <DialogHeader>
                 <DialogTitle>Detail Payload</DialogTitle>
                 <DialogDescription className="text-sm">View detail payload.</DialogDescription>

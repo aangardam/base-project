@@ -48,36 +48,36 @@ export const MenuTree = () => {
                 Tree Menu
             </AccordionTrigger>
             <AccordionContent>
-                <div className="max-h-[80vh] overflow-y-auto scrollbar-hide overflow-x-hidden">
+                <div>
                     <div className="relative w-full">
                         <div className="flex gap-10">
                         {menuItems.length > 0 && (
                             <div>
-                            <SortableTree
-                                items={menuItems}
-                                onItemsChanged={(newItems) => {
-                                  
-                                  if (hasDepthGreaterThan(newItems, 3)) {
-                                      console.warn('Max depth exceeded');
-                                      return;
-                                  }else{
-                                    setDisableSubmit(false);
-                                  }
+                              <SortableTree
+                                  items={menuItems}
+                                  onItemsChanged={(newItems) => {
+                                    
+                                    if (hasDepthGreaterThan(newItems, 3)) {
+                                        console.warn('Max depth exceeded');
+                                        return;
+                                    }else{
+                                      setDisableSubmit(false);
+                                    }
 
-                                  if (isMovingToDifferentParent(prevMenuItems, newItems)) {
-                                    toast({
-                                      title: 'Error',
-                                      description: "Cannot move item to different parent.",
-                                      variant: 'destructive',
-                                    });
-                                    console.warn("Cannot move item to different parent.");
-                                    return;
-                                  }
-                                  setMenuItems(newItems);
-                                  setPrevMenuItems(newItems);
-                                }}
-                                TreeItemComponent={MinimalTreeItemComponent}
-                            />
+                                    if (isMovingToDifferentParent(prevMenuItems, newItems)) {
+                                      toast({
+                                        title: 'Error',
+                                        description: "Cannot move item to different parent.",
+                                        variant: 'destructive',
+                                      });
+                                      console.warn("Cannot move item to different parent.");
+                                      return;
+                                    }
+                                    setMenuItems(newItems);
+                                    setPrevMenuItems(newItems);
+                                  }}
+                                  TreeItemComponent={MinimalTreeItemComponent}
+                              />
                             </div>
                         )}
                         </div>

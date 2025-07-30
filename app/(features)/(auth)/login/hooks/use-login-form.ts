@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { toast } from '@/shared/hooks/use-toast';
 import { useLogin } from './use-login';
-import { useGoogleLogin, useGoogleOneTapLogin } from '@react-oauth/google';
+import { useGoogleLogin } from '@react-oauth/google';
 import { AuthTypeForm } from '../interfaces/auth.interface';
 
 export type TypeForm = {
@@ -81,12 +81,12 @@ export function useLoginForm(onTypeChange: (type: TypeForm) => void) {
     }
   };
 
-  useGoogleOneTapLogin({
-    onSuccess: (data) => {
-      console.log(data);
-    },
-    auto_select: true,
-  });
+  // useGoogleOneTapLogin({
+  //   onSuccess: (data) => {
+  //     console.log(data);
+  //   },
+  //   auto_select: true,
+  // });
 
   const onGoogleLogin = useGoogleLogin({
     onSuccess: (data) => {

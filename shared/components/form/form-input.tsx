@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { maxMinLength } from "@/shared/utils/utils";
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
+import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Search} from "lucide-react";
@@ -18,11 +18,27 @@ type PropTypes = {
   maxLength?: number;
   minLength?: number;
   withIcon?: boolean;
+  description?: React.ReactNode;
+  isDisabled?: boolean;
 };
 
-const FormInput = ({ name, label, type = "text", placeholder, control, isPassword = false, isRequired = true, maxLength, minLength, withIcon = false, }: PropTypes) => {
-
-  return (
+const FormInput = (props : PropTypes) => {
+  const {
+    name, 
+    label, 
+    type = "text", 
+    placeholder, 
+    control, 
+    isPassword = false, 
+    isRequired = true, 
+    maxLength, 
+    minLength, 
+    withIcon = false, 
+    description,
+    isDisabled = false,
+  } = props;
+  
+    return (
     <FormField
       control={control}
       name={name}
@@ -37,6 +53,7 @@ const FormInput = ({ name, label, type = "text", placeholder, control, isPasswor
               {type !== 'textArea' ? (
                   type === 'number' ? (
                       <Input
+                          isDisabled={isDisabled}
                           type={type} 
                           placeholder={placeholder} 
                           {...field} 
@@ -45,6 +62,7 @@ const FormInput = ({ name, label, type = "text", placeholder, control, isPasswor
                       />
                   ):(
                       <Input
+                          isDisabled={isDisabled}
                           isPassword = {isPassword}
                           showPasswordIcon = {isPassword}
                           type={type} 
@@ -55,6 +73,7 @@ const FormInput = ({ name, label, type = "text", placeholder, control, isPasswor
                   )
               ):(
                   <Textarea
+                      isDisabled={isDisabled}
                       placeholder={placeholder}
                       className="resize-none"
                       {...field}
@@ -63,6 +82,7 @@ const FormInput = ({ name, label, type = "text", placeholder, control, isPasswor
               )}
             </div>
           </FormControl>
+          <FormDescription>{description}</FormDescription>
           <FormMessage />
         </FormItem>
       )}

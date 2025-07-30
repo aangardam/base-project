@@ -7,8 +7,8 @@ export interface IBaseResponse<T> {
     success: boolean;
     message: string;
     code: number;
-    recordsTotal?: number;
-    recordsFiltered?: number;
+    totalRecord?: number;
+    filteredRecord?: number;
     data: T;
     subTotal?: number;
     total?: number;
@@ -25,6 +25,8 @@ export type TPayloadGetList = {
     };
     length: number;
     start: number;
+    userId?: number;
+    roleId?: number;
 }
 
 export type TUserMenuInfo = {
