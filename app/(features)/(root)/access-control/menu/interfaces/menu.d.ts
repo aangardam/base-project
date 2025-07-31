@@ -51,3 +51,5 @@ export type MenuItemPayload = {
         userMenuInfo: TUserMenuInfo;
     };
 }
+
+export type TMenuTreeRequestBody = MenuItemPayload

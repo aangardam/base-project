@@ -15,6 +15,7 @@ import { Button } from '@/shared/components/ui/button';
 import { TMenuTree } from '../interfaces/menu';
 
 import { toast } from '@/shared/hooks/use-toast';
+import useEditMenuTree from '../hooks/use-edit-menu-tree';
 
 
 const MinimalTreeItemComponent = React.forwardRef<
@@ -35,11 +36,12 @@ export const MenuTree = () => {
     menuItems,
     setMenuItems,
     hasDepthGreaterThan,
-    handleSubmit,
     isMovingToDifferentParent,
     prevMenuItems,
     setPrevMenuItems
   } = useMenuTree();
+
+  const { handleSubmit } = useEditMenuTree(menuItems);
   
   return (
     <Accordion type="single" collapsible>

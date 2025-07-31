@@ -54,7 +54,7 @@ export const extractUrls = (menuItems: any): string[] => {
 };
   
 export const camelToSnake = (str: string) => {
-return str.replace(/([A-Z])/g, '_$1').toLowerCase();
+    return str.replace(/([A-Z])/g, '_$1').toLowerCase();
 }
   
 export type Variant =

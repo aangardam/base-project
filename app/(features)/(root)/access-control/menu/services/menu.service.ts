@@ -2,7 +2,7 @@
 import { IBaseResponse, TPayloadGetList } from "@/shared/interfaces/global";
 import endpoint from "@/shared/lib/endpoin";
 import { RequestAdapter } from "@/shared/lib/http/request-adapter";
-import { TMenuRequestBody, TMenuResponse } from "../interfaces/menu";
+import { TMenuRequestBody, TMenuResponse, TMenuTreeRequestBody } from "../interfaces/menu";
 
 
 export class MenuService extends RequestAdapter {
@@ -21,6 +21,19 @@ export class MenuService extends RequestAdapter {
             throw error;
         }
     }
+
+    public async updateMenuTree(body:TMenuTreeRequestBody): Promise<IBaseResponse<string>> {
+        try {
+            const { data } = await this.sendPutRequest<
+            TMenuTreeRequestBody,
+                IBaseResponse<string>
+            >(`${endpoint.access}/access-management/menu/tree/update`, body);
+
+            return data;
+        } catch (error) {
+            throw error;
+        }
+    } 
 
     public async getList(
         payload: TPayloadGetList,

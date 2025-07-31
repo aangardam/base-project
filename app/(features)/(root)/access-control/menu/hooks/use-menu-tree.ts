@@ -99,50 +99,6 @@ const useMenuTree = () => {
           );
         });
     };
-      
-      
-
-
-    // submit update menu tree
-    const permission = getMenuPermission(menuPermission, '/access-control/menu');
-    const handleSubmit = () => {
-        const createPayload = (
-          items: TreeItems<TMenuTree>,
-          parntId:number = 0
-        ):TDataMenuTree[]=>{
-          let result:TDataMenuTree[] = [];
-          items.forEach((item:any)=>{
-            result.push({
-              id: item.id,
-              name: item.name,
-              parent: parntId,
-            });
-            if(item.children && item.children.length > 0){
-              result = result.concat(createPayload(item.children, Number(item.id)));
-            }
-          });
-          return result;
-        }
-    
-        const dataPayloadMenuTree = createPayload(menuItems, 0);
-        const payload: MenuItemPayload = {
-          requestId: generateRequestId(),
-          requestTime: formatRequestTime(),
-          data: {
-            menu: dataPayloadMenuTree,
-            userMenuInfo: {
-                ...userMenuInfo,
-                userId: user.userId,
-                roleId: user.roles[0].id,
-                menuId: permission[0].id,
-                parentId: permission[0].parent,
-            },
-          },
-        };
-    
-        console.log(payload);
-        
-    };
 
     return {
         dataMenuTree,
@@ -151,7 +107,6 @@ const useMenuTree = () => {
         menuItems,
         setMenuItems,
         hasDepthGreaterThan,
-        handleSubmit,
         isMovingToDifferentParent,
         prevMenuItems,
         setPrevMenuItems
