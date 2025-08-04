@@ -17,33 +17,40 @@ interface HasId {
 }
 
 interface FormDialogGlobalProps<T> {
-  actionDelete?: boolean;
-  actionUpdate?: boolean;
-  actionView?: boolean;
   title?: string
   row: T
   formComponent?: React.ComponentType<{ data: T }>
-  params?: string;
+
+  // view
+  actionView?: boolean;
   isPopUp?: boolean;
   link?: string;
-  dialogSizeEdit?: DialogSize;
   dialogSizeView?: DialogSize;
+
+  // update
+  actionUpdate?: boolean;
+  dialogSizeUpdate?: DialogSize;
+
+  // delete
+  actionDelete?: boolean;
+  params?: string;
   deleteActionType?:string;
+ 
 }
   
 export function CellAction<T extends HasId>(props: FormDialogGlobalProps<T>) {
   const {
-    actionDelete = true,
-    actionUpdate = true,
-    actionView = false,
     title = "Form",
     row,
     formComponent: FormComponent,
+    actionView = false,
     isPopUp = true,
-    params,
     link = '',
-    dialogSizeEdit = 'md',
     dialogSizeView = 'md',
+    actionUpdate = true,
+    dialogSizeUpdate = 'md',
+    actionDelete = true,
+    params = '',
     deleteActionType,
   } = props;
 
@@ -93,7 +100,7 @@ export function CellAction<T extends HasId>(props: FormDialogGlobalProps<T>) {
       )}
 
       {actionUpdate && FormComponent && (
-        <DialogEdit title={title} size={dialogSizeEdit}>
+        <DialogEdit title={title} size={dialogSizeUpdate}>
           <FormComponent data={row} />
         </DialogEdit>
       )}

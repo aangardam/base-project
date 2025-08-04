@@ -40,13 +40,17 @@ export const columns: ColumnDef<TRole>[] = [
     header:"Action",
     cell:({row}) => {
       return <CellAction 
-              row={row.original} 
-              title="Role" 
+              title="Role"
+              row={row.original}
               formComponent={FormRole}
-              dialogSizeEdit="lg"
-              params={row.original.name}
+
+              actionUpdate={true}
+              dialogSizeUpdate="lg"
+
               actionDelete={row.original.name !== 'Default Role' ? true : false}
+              params={row.original.name}
               deleteActionType="role"
+              
             />
     },
   },

@@ -107,11 +107,15 @@ export const columns: ColumnDef<TMenu>[] = [
     header:"Action",
     cell:({row}) => {
       return <CellAction 
-              row={row.original} 
-              title="Menu" 
+              title="Menu"
+              row={row.original}
               formComponent={FormMenu}
-              dialogSizeEdit="lg"
+
+              actionUpdate={true}
+              dialogSizeUpdate="lg"
+
               actionDelete={false}
+
             />
     },
   },
