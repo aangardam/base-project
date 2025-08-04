@@ -24,7 +24,7 @@ export type TMenuRequestBody = {
         name: string;
         icon: string;
         parentId: number;
-        functions: number[];
+        functionId: number[];
         authorizeUrl: string;
         userMenuInfo: userMenuInfo;
     }

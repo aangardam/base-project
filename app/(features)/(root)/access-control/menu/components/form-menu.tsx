@@ -94,7 +94,7 @@ const FormMenu = (props:PropTypes) => {
                 <div className="flex justify-between gap-5 flex-wrap md:flex-nowrap">
 
                     <FormSelect 
-                        name="functions"
+                        name="functionId"
                         label="Function"
                         placeholder="Select Funtion"
                         control={form.control}

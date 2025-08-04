@@ -5,7 +5,11 @@ import DialogEdit from "./dialog-edit"
 import { Search } from "lucide-react";
 import DialogView from "./dialog-view";
 import Link from "next/link";
-import { DialogSize } from "@/shared/utils/utils";
+import { DialogSize, getMenuPermission } from "@/shared/utils/utils";
+import { useUserStore } from "@/shared/store/user.store";
+import { usePathname } from "next/navigation";
+import { formatRequestTime, generateRequestId } from "@/shared/utils/request.untils";
+import { useDeleteByMenuType } from "@/shared/hooks/use-delete-by-type";
 
 
 interface HasId {
@@ -24,12 +28,10 @@ interface FormDialogGlobalProps<T> {
   link?: string;
   dialogSizeEdit?: DialogSize;
   dialogSizeView?: DialogSize;
-
+  deleteActionType?:string;
 }
   
 export function CellAction<T extends HasId>(props: FormDialogGlobalProps<T>) {
-  
-
   const {
     actionDelete = true,
     actionUpdate = true,
@@ -42,10 +44,35 @@ export function CellAction<T extends HasId>(props: FormDialogGlobalProps<T>) {
     link = '',
     dialogSizeEdit = 'md',
     dialogSizeView = 'md',
+    deleteActionType,
   } = props;
 
+  const pathName = usePathname()
+  const { userMenuInfo, menuPermission } = useUserStore();
+  const permission = getMenuPermission(menuPermission, pathName);
+  const mutateDelete = useDeleteByMenuType(deleteActionType ?? "");
+ 
   const handleDelete = () => {
-    console.log("delete", row?.id)
+    // console.log("delete", row?.id)
+    const body = {
+      requestId:generateRequestId(),
+      requestTime:formatRequestTime(),
+      data:{
+        id: Number(row?.id),
+        userMenuInfo: {
+            ...userMenuInfo,
+            menuId: permission[0].id,
+            parent: permission[0].parent,
+        },
+      }
+      
+    };
+    if (mutateDelete) {
+      mutateDelete(body);
+    } else {
+      console.warn("Delete handler not found for", deleteActionType);
+    }
+    // console.log('body', body)
   }
 
   return (

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { z } from "zod"
-import { MenuService } from "../services/menu.service";
-import { TMenuRequestBody } from "../interfaces/menu";
+import { RoleService } from "../services/role.service";
+import { TRoleRequestBody } from "../interfaces/role";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "@/shared/hooks/use-toast";
 import { AxiosError } from "axios";
@@ -15,40 +15,31 @@ import { getMenuPermission } from "@/shared/utils/utils";
 
 const Schema = z.object({
     name: z.string().min(1, { message: "Name is Required" }),
-    url: z.string().min(1, { message: "Description is Required" }),
-    icon: z.string().min(1, { message: "Value is Required" }),
-    parentId: z.number(),
-    functionId: z.array(z.number()),
-    show:z.any(),
+    menuFunctionIds: z.array(z.number()),
 });
 
-const useEditMenu = (data?:any, onClose?:any) => {
-    const menuService = new MenuService();
+const useActionRole = (data?:any, onClose?:any) => {
+    const roleService = new RoleService();
     const queryClient = useQueryClient();
     const { user, menuPermission } = useUserStore();
-    const permission = getMenuPermission(menuPermission, '/access-control/menu');
-    // console.log('data', data)
+    const permission = getMenuPermission(menuPermission, '/access-control/role');
+    // console.log('data', data?.name)
+    const isAllRole = data?.menuFunctionIds?.filter((item: any) => item !== 1) ?? [];
     const form = useForm<z.infer<typeof Schema>>({
         resolver: zodResolver(Schema),
         defaultValues: {
             name: data?.name,
-            url: data?.url,
-            icon: data?.icon,
-            parentId: Number(data?.parentId) ?? 1000,
-            functionId: data?.function?.map((item: any) => item.id) ?? [],
-            show: data?.show === '1' ? true : false,
+            menuFunctionIds: isAllRole ?? [],
         },
     });
 
-    const handleSubmit = (values: z.infer<typeof Schema>) =>  {        
+    const handleSubmit = (values: z.infer<typeof Schema>) =>  {   
         const payload = {
             requestId: generateRequestId(),
             requestTime: formatRequestTime(),
             data: {
-                ...values,
-                show: values.show === true ? 1 : 0,
-                parentId:Number(values.parentId),
-                authorizeUrl: 'authorizeUrl',
+                name: values.name,
+                menuFunctionIds: values.menuFunctionIds.map(String),
                 userMenuInfo: {
                     userId: user.userId,
                     roleId: user.roles[0].id,
@@ -58,33 +49,48 @@ const useEditMenu = (data?:any, onClose?:any) => {
             },
         }
         if(data){
-            mutateUpdateMenu({...payload, data: {id: data.id,...payload.data}});
+            mutateActionRole({ 
+                ...payload, 
+                data: { 
+                    ...payload.data, 
+                    id: data.id 
+                } 
+            });
+        }else{
+            mutateActionRole(payload);
         }
     };
 
-    const updateMenu = async (payload: TMenuRequestBody) => {
-        console.log('payload', JSON.stringify(payload))
-        const res = await menuService.updateMenu(payload);
+    const actionRole = async (payload: TRoleRequestBody) => {
+        let res;
+        if(data){
+            res = await roleService.update(payload);
+        }else{
+            res = await roleService.create(payload);
+        }
+
         return res;
+       
     }
+
     const { 
-        mutate: mutateUpdateMenu ,
-        isPending: isPendingMenu,
+        mutate: mutateActionRole ,
+        isPending: isPendingRole,
     } = useMutation({
-        mutationFn: updateMenu,
+        mutationFn: actionRole,
         onSuccess: () => {
             queryClient.invalidateQueries({
-                queryKey: ['menu'],
+                queryKey: ['role'],
             });
-            queryClient.invalidateQueries({
-                queryKey: ['role-access'],
-            });
-            queryClient.invalidateQueries({
-                queryKey: ['menu-tree'],
-            });
+            let message = 'Update';
+            let description = 'Role has been Updated successfully';
+            if(!data){
+                message = 'Create';
+                description = 'Role has been Created successfully';
+            }
             toast({
-                title: 'Update Menu Success',
-                description: 'Menu has been Updated successfully',
+                title: `${message} Role Success`,
+                description: `${description}`,
             });
             if (onClose) onClose();
         },
@@ -99,11 +105,14 @@ const useEditMenu = (data?:any, onClose?:any) => {
         },
     });
 
+    
+    
+
     return {
         form,
         handleSubmit,
-        isPendingMenu
+        isPendingRole
     }
 }
 
-export default useEditMenu
+export default useActionRole

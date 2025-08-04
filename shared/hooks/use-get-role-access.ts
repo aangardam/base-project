@@ -17,7 +17,7 @@ const useGetRoleAccess = () => {
         setUserMenuInfo({
             ...userMenuInfo,
             roleId: selectedRole,
-            userId: user?.accountId,
+            userId: user?.userId,
         });
     };
 
