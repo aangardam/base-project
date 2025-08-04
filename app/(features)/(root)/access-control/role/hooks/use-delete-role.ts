@@ -5,7 +5,6 @@ import { AxiosError } from "axios";
 import { toast } from "@/shared/hooks/use-toast";
 
 const useDeleteRole = () => {
-
     const roleService = new RoleService();
     const queryClient = useQueryClient();
     

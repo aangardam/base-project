@@ -50,10 +50,7 @@ const useEditMenuTree = (menuItems:any) => {
             },
           },
         };
-        // console.log(JSON.stringify(payload));
         mutateUpdateMenuTree(payload);
-        
-        
     };
 
     const updateMenuTree = async (payload: TMenuTreeRequestBody) => {

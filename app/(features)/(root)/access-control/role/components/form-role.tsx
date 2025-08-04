@@ -13,7 +13,6 @@ import useRoleTree from "../hooks/use-role-tree"
 import { Switch } from "@/shared/components/ui/switch" 
 import MultiSelectCheckbox from "@/shared/components/ui/multi-checkbox"
 
-
 interface PropTypes {
     data?: TRole;
     onClose?: () => void;
@@ -33,9 +32,7 @@ const FormRole = (props:PropTypes) => {
         setHideTree,
         transformDataTree,
         idsList,
-     } = useRoleTree(data, form);
-
-    //  console.log(form.control)
+    } = useRoleTree(data, form);
 
     return (
         <Form {...form}>
@@ -58,10 +55,6 @@ const FormRole = (props:PropTypes) => {
                                         >
                                             All Menu
                                         </FormLabel>
-                                        {/* <FormDescription>
-                                            you get access to all features and
-                                            permissions
-                                        </FormDescription> */}
                                     </div>
                                     <FormControl>
                                         <Switch

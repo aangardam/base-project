@@ -12,7 +12,6 @@ import { useUserStore } from "@/shared/store/user.store";
 import { formatRequestTime, generateRequestId } from "@/shared/utils/request.untils";
 import { getMenuPermission } from "@/shared/utils/utils";
 
-
 const Schema = z.object({
     name: z.string().min(1, { message: "Name is Required" }),
     menuFunctionIds: z.array(z.number()),
@@ -23,7 +22,7 @@ const useActionRole = (data?:any, onClose?:any) => {
     const queryClient = useQueryClient();
     const { user, menuPermission } = useUserStore();
     const permission = getMenuPermission(menuPermission, '/access-control/role');
-    // console.log('data', data?.name)
+  
     const isAllRole = data?.menuFunctionIds?.filter((item: any) => item !== 1) ?? [];
     const form = useForm<z.infer<typeof Schema>>({
         resolver: zodResolver(Schema),
@@ -68,9 +67,7 @@ const useActionRole = (data?:any, onClose?:any) => {
         }else{
             res = await roleService.create(payload);
         }
-
         return res;
-       
     }
 
     const { 
@@ -104,9 +101,6 @@ const useActionRole = (data?:any, onClose?:any) => {
             })
         },
     });
-
-    
-    
 
     return {
         form,

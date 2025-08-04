@@ -13,7 +13,6 @@ import {
 } from '@/shared/components/ui/accordion';
 import { Button } from '@/shared/components/ui/button';
 import { TMenuTree } from '../interfaces/menu';
-
 import { toast } from '@/shared/hooks/use-toast';
 import useEditMenuTree from '../hooks/use-edit-menu-tree';
 
@@ -39,7 +38,6 @@ export const MenuTree = () => {
     isMovingToDifferentParent,
     prevMenuItems,
     setPrevMenuItems,
-    
   } = useMenuTree();
 
   const { handleSubmit, isPendingMenuTree } = useEditMenuTree(menuItems);
@@ -95,8 +93,7 @@ export const MenuTree = () => {
                         disabled={disableSubmit || isPendingMenuTree}
                         isLoading={isPendingMenuTree}
                     >
-                        {/* Update Menu */}
-                        {isPendingMenuTree ? ('Loading ...') : 'Update Menu'}
+                        {isPendingMenuTree ? 'Loading ...' : 'Update Menu'}
                     </Button>
                 </div>
             </AccordionContent>

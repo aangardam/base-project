@@ -3,14 +3,11 @@ import { usePagination } from "@/shared/hooks/use-pagination";
 import { useSorting } from "@/shared/hooks/use-sorting";
 import { buildQueryBody } from "@/shared/lib/build-query-body";
 import { useEffect, useMemo, useState } from "react";
-
 import { useUserStore } from "@/shared/store/user.store";
 import { useQuery } from "@tanstack/react-query";
 import { RoleService } from "../services/role.service";
 
-
 const useRole = () => {
-    // get data 
     const { limit, onPaginationChange, skip, pagination } = usePagination();
     const { sorting, onSortingChange} = useSorting('name');
     const [search, setSearch] = useState('');
@@ -32,7 +29,6 @@ const useRole = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sorting, search]);
 
-//    console.log(JSON.stringify(bodyReq))
     const getListRole = async() => {
         const roleService = new RoleService();
         const res = await roleService.getList(bodyReq);

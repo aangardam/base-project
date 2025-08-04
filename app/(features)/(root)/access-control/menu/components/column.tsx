@@ -2,10 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUp } from "lucide-react"
- 
 import { Button } from "@/shared/components/ui/button"
-// import CellAction from "./cell-action"
-
 import { CellAction } from "@/shared/components/ui/cell-action"
 import { TMenu } from "../interfaces/menu"
 import FormMenu from "./form-menu"
@@ -43,7 +40,6 @@ export const columns: ColumnDef<TMenu>[] = [
         <Button
           variant={"ghost"}
           size={"sm"}
-          // className="flex items-center gap-2 text-wrap"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           <span className="uppercase">url</span>
@@ -64,7 +60,6 @@ export const columns: ColumnDef<TMenu>[] = [
         <Button
           variant={"ghost"}
           size={"sm"}
-          // className="flex items-center gap-2 text-wrap"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           <span className="uppercase">icon</span>
@@ -85,7 +80,6 @@ export const columns: ColumnDef<TMenu>[] = [
         <Button
           variant={"ghost"}
           size={"sm"}
-          // className="flex items-center gap-2 text-wrap"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           <span className="uppercase">parent name</span>
@@ -110,10 +104,8 @@ export const columns: ColumnDef<TMenu>[] = [
               title="Menu"
               row={row.original}
               formComponent={FormMenu}
-
               actionUpdate={true}
               dialogSizeUpdate="lg"
-
               actionDelete={false}
 
             />

@@ -3,8 +3,6 @@ import { IBaseResponse, TPayloadGetList } from "@/shared/interfaces/global";
 import endpoint from "@/shared/lib/endpoin";
 import { RequestAdapter } from "@/shared/lib/http/request-adapter";
 import { TRoleDeleteRequestBody, TRoleRequestBody, TRoleResponse } from "../interfaces/role";
-
-
 export class RoleService extends RequestAdapter {
     constructor() {
         super();

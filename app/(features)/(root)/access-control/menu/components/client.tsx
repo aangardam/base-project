@@ -15,9 +15,6 @@ export default function Client() {
     pageCount,
   } = useMenu();
 
-  
-  // console.log(pagination)
-  // console.log(pageCount)
   return (
     <div className="container mx-auto py-10">
       <DataTable 

@@ -6,7 +6,6 @@ import DialogAdd from "@/shared/components/ui/dialog-add";
 import FormRole from "./form-role";
 
 export default function Client() {
-
   const {
     ListRole,
     isPending,

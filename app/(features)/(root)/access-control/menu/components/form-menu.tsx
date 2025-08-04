@@ -1,12 +1,10 @@
 "use client"
 
- 
 import { Button } from "@/shared/components/ui/button"
 import { Form } from "@/shared/components/ui/form"
 import FormWrapper from "@/shared/components/form/form-wrapper"
 import { BsDownload, BsXLg } from "react-icons/bs"
 import FormInput from "@/shared/components/form/form-input"
-// import useMenu from "../hooks/use-menu"
 import { TMenu } from "../interfaces/menu"
 import FormCheckbox from "@/shared/components/form/form-checkbox"
 import useDropdown from "@/shared/hooks/use-dropdown"
@@ -31,7 +29,8 @@ const FormMenu = (props:PropTypes) => {
   const { 
     dataDropdownMenu, 
     loadingDropdownMenu,
-    dataDropdownFuntion
+    dataDropdownFuntion,
+    loadingDropdownFuntion
 } = useDropdown();
 
   
@@ -79,7 +78,6 @@ const FormMenu = (props:PropTypes) => {
                         }
                     />
 
-                    
                     <FormSelect 
                         name="parentId"
                         label="Parent"
@@ -87,7 +85,7 @@ const FormMenu = (props:PropTypes) => {
                         control={form.control}
                         listData={dataDropdownMenu || []}
                         loading={loadingDropdownMenu}
-                        // isDisabled={!!data}
+                        isDisabled={!!data}
                         
                     />
                 </div>
@@ -99,16 +97,9 @@ const FormMenu = (props:PropTypes) => {
                         placeholder="Select Funtion"
                         control={form.control}
                         listData={dataDropdownFuntion || []}
-                        // loading={loadingDropdownMenu}
+                        loading={loadingDropdownFuntion}
                         type="multiple"
                     />
-
-                    {/* <FormInput 
-                        name="funtion"
-                        label="Funtion"
-                        placeholder="Input URL" 
-                        control={form.control}
-                    /> */}
 
                     <FormCheckbox 
                         name="show"

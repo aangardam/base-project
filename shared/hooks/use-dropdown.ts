@@ -24,7 +24,7 @@ const useDropdown = () => {
     });
 
     // get dropdown function
-   const { data: dataDropdownFuntion } = useQuery({
+   const { data: dataDropdownFuntion, isPending:loadingDropdownFuntion } = useQuery({
         queryKey:['function', 'dropdown'],
         queryFn:() => dropdownService.getDropdownFunction(),
         select: ({ data }) => 
@@ -39,6 +39,7 @@ const useDropdown = () => {
        loadingDropdownMenu,
 
        dataDropdownFuntion,
+       loadingDropdownFuntion
    }
 
 }

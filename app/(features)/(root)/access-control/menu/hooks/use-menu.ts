@@ -9,7 +9,6 @@ import { useQuery } from "@tanstack/react-query";
 
 
 const useMenu = () => {
-    // get data menu
     const { limit, onPaginationChange, skip, pagination } = usePagination();
     const { sorting, onSortingChange} = useSorting();
     const [search, setSearch] = useState('');

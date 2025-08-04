@@ -2,9 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUp } from "lucide-react"
- 
 import { Button } from "@/shared/components/ui/button"
-
 import { CellAction } from "@/shared/components/ui/cell-action"
 import { TRole } from "../interfaces/role"
 import FormRole from "./form-role"
@@ -21,7 +19,6 @@ export const columns: ColumnDef<TRole>[] = [
         <Button
           variant={"ghost"}
           size={"sm"}
-          // className="text-wrap"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           <span className="uppercase">name</span>
@@ -43,14 +40,11 @@ export const columns: ColumnDef<TRole>[] = [
               title="Role"
               row={row.original}
               formComponent={FormRole}
-
               actionUpdate={true}
               dialogSizeUpdate="lg"
-
               actionDelete={row.original.name !== 'Default Role' ? true : false}
               params={row.original.name}
               deleteActionType="role"
-              
             />
     },
   },

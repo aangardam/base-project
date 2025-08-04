@@ -1,18 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-
 import { useEffect, useState, useCallback } from "react";
 import { MenuService } from "../services/menu.service";
 import { useQuery } from "@tanstack/react-query";
 import { TreeItems } from "dnd-kit-sortable-tree";
-import { MenuItemPayload, TDataMenuTree, TMenuTree } from "../interfaces/menu";
-import { useUserStore } from "@/shared/store/user.store";
-import { formatRequestTime, generateRequestId } from "@/shared/utils/request.untils";
-import { extractPermissionNames, getMenuPermission } from "@/shared/utils/utils";
+import { TMenuTree } from "../interfaces/menu";
 
 const useMenuTree = () => {
-    const { user, menuPermission, userMenuInfo } = useUserStore();
     const [disableSubmit, setDisableSubmit] = useState(true);
     const [menuItems, setMenuItems] = useState<TreeItems<TMenuTree>>([]);
     const [prevMenuItems, setPrevMenuItems] = useState<TreeItems<TMenuTree>>([]);   

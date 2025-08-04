@@ -12,7 +12,6 @@ import { useUserStore } from "@/shared/store/user.store";
 import { formatRequestTime, generateRequestId } from "@/shared/utils/request.untils";
 import { getMenuPermission } from "@/shared/utils/utils";
 
-
 const Schema = z.object({
     name: z.string().min(1, { message: "Name is Required" }),
     url: z.string().min(1, { message: "Description is Required" }),
@@ -27,7 +26,6 @@ const useEditMenu = (data?:any, onClose?:any) => {
     const queryClient = useQueryClient();
     const { user, menuPermission } = useUserStore();
     const permission = getMenuPermission(menuPermission, '/access-control/menu');
-    // console.log('data', data)
     const form = useForm<z.infer<typeof Schema>>({
         resolver: zodResolver(Schema),
         defaultValues: {

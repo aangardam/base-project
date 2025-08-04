@@ -58,10 +58,7 @@ const useRoleTree = (data?: any, form?: any) => {
           menuFunctionIds: data?.menuFunctionIds ?? [],
       });
   }, [data]);
-
-   // console.log(transformDataTree)
    
-
    return { 
       dataRoleTree, 
       isLoading,
