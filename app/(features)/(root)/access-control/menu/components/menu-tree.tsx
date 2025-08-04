@@ -38,10 +38,11 @@ export const MenuTree = () => {
     hasDepthGreaterThan,
     isMovingToDifferentParent,
     prevMenuItems,
-    setPrevMenuItems
+    setPrevMenuItems,
+    
   } = useMenuTree();
 
-  const { handleSubmit } = useEditMenuTree(menuItems);
+  const { handleSubmit, isPendingMenuTree } = useEditMenuTree(menuItems);
   
   return (
     <Accordion type="single" collapsible>
@@ -91,9 +92,11 @@ export const MenuTree = () => {
                         type="button"
                         onClick={handleSubmit}
                         className="px-6"
-                        disabled={disableSubmit}
+                        disabled={disableSubmit || isPendingMenuTree}
+                        isLoading={isPendingMenuTree}
                     >
-                        Update Menu
+                        {/* Update Menu */}
+                        {isPendingMenuTree ? ('Loading ...') : 'Update Menu'}
                     </Button>
                 </div>
             </AccordionContent>

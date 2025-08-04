@@ -26,6 +26,8 @@ const Sidebar = () => {
     setSidebarOpen
   } = useGetRoleAccess()
 
+  // console.log(JSON.stringify(dataRoleAccess))
+
   const handleLogout = () => {
     logout();
     setAuthenticated(false);
@@ -91,6 +93,8 @@ const Sidebar = () => {
           )}
           
         </div>
+
+        
         
         <div className="w-full pt-2">
           <Separator className="bg-white/10 my-1"/>

@@ -78,6 +78,9 @@ const useEditMenu = (data?:any, onClose?:any) => {
             queryClient.invalidateQueries({
                 queryKey: ['role-access'],
             });
+            queryClient.invalidateQueries({
+                queryKey: ['menu-tree'],
+            });
             toast({
                 title: 'Update Menu Success',
                 description: 'Menu has been Updated successfully',

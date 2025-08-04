@@ -138,7 +138,7 @@ const FormMenu = (props:PropTypes) => {
                     isLoading={isPendingMenu}
                 >
                     <BsDownload className="mr-2" />
-                    Save
+                    {isPendingMenu ? 'Loading ...' : 'Save'}
                 </Button>
             </div>
 

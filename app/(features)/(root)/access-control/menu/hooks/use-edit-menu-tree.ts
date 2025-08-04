@@ -68,6 +68,9 @@ const useEditMenuTree = (menuItems:any) => {
         mutationFn: updateMenuTree,
         onSuccess: () => {
             queryClient.invalidateQueries({
+                queryKey: ['menu-tree'],
+            });
+            queryClient.invalidateQueries({
                 queryKey: ['role-access'],
             });
             toast({
