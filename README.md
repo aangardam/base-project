@@ -35,8 +35,24 @@ Tujuan utamanya adalah menyediakan pondasi standar agar pengembangan lebih konsi
    yarn install
    ```
 3. **Setup environment variable**
+    Buat file .env.local di root project:
    ```bash
-   cp .env.example .env.local
+    # API Configuration
+    NEXT_PUBLIC_API_URL="https://base-project-be.vercel.app/api/v1/"
+
+    # Google OAuth
+    NEXT_PUBLIC_GOOGLE_CLIENT_ID="978808544343-mthl8gcpfmesvrt4ud5fif4hd9ojjg5q.apps.googleusercontent.com"
+
+    # reCAPTCHA
+    NEXT_PUBLIC_RECAPTCHA_SITE_KEY="6Lc6Ot0pAAAAAFgFFA9TW78uqOlhwTAFUpInirsE"
+
+    # Security
+    NEXT_PUBLIC_SECRET_KEY="Gv2rT1E+1LS3FjG9A0pZ5/Z2oYJt5e7FjxvX2L6KHxE="
+
+    # Feature Flags
+    NEXT_PUBLIC_ENABLE_CAPTCHA="true"
+
+
    ```
 4. **Start development server**
    ```bash
