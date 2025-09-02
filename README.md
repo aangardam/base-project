@@ -34,27 +34,25 @@ Tujuan utamanya adalah menyediakan pondasi standar agar pengembangan lebih konsi
    ```bash
    yarn install
    ```
-3. **Setup environment variable**
-    Buat file .env.local di root project:
-
-   ```bash
+3. **Setup environment variables**
+   Buat file .env.local di root project:
+   ```env
     # API Configuration
-    NEXT_PUBLIC_API_URL="https://base-project-be.vercel.app/api/v1/"
+    NEXT_PUBLIC_API_URL=https://base-project-be.vercel.app/api/v1/
 
     # Google OAuth
-    NEXT_PUBLIC_GOOGLE_CLIENT_ID="978808544343-mthl8gcpfmesvrt4ud5fif4hd9ojjg5q.apps.googleusercontent.com"
+    NEXT_PUBLIC_GOOGLE_CLIENT_ID=978808544343-mthl8gcpfmesvrt4ud5fif4hd9ojjg5q.apps.googleusercontent.com
 
     # reCAPTCHA
-    NEXT_PUBLIC_RECAPTCHA_SITE_KEY="6Lc6Ot0pAAAAAFgFFA9TW78uqOlhwTAFUpInirsE"
+    NEXT_PUBLIC_RECAPTCHA_SITE_KEY=6Lc6Ot0pAAAAAFgFFA9TW78uqOlhwTAFUpInirsE
 
     # Security
-    NEXT_PUBLIC_SECRET_KEY="Gv2rT1E+1LS3FjG9A0pZ5/Z2oYJt5e7FjxvX2L6KHxE="
+    NEXT_PUBLIC_SECRET_KEY=Gv2rT1E+1LS3FjG9A0pZ5/Z2oYJt5e7FjxvX2L6KHxE=
 
     # Feature Flags
-    NEXT_PUBLIC_ENABLE_CAPTCHA="true"
+    NEXT_PUBLIC_ENABLE_CAPTCHA=true
+    ```
 
-
-   ```
 4. **Start development server**
    ```bash
    npm run dev
@@ -67,7 +65,7 @@ Tujuan utamanya adalah menyediakan pondasi standar agar pengembangan lebih konsi
 
 ---
 
-## 🔑 Login
+## 🔑 Dummy Login
 Gunakan kredensial berikut untuk mengakses halaman login:
 - Username: `admin.dummy@gmail.com`
 - Password: `Admin123_`
@@ -76,11 +74,11 @@ Gunakan kredensial berikut untuk mengakses halaman login:
 
 ## 📝 Dokumentasi
 Detail aturan coding, guideline, dan standar bisa dilihat di:
-👉 Standarisasi Next.js (https://www.notion.so/Standarisasi-Next-Js-1d8bec233321805bac23c3ef20bd3099)
+👉 [Standarisasi Next.js](https://www.notion.so/Standarisasi-Next-Js-1d8bec233321805bac23c3ef20bd3099)
 
 ---
 
 ## 📄 Lisensi
-Proyek ini menggunakan lisensi MIT.
-Silakan digunakan dan dikembangkan sesuai kebutuhan.
+Silakan digunakan dan dikembangkan sesuai kebutuhan.  
+Lisensi proyek ini menggunakan [MIT License](./LICENSE).
 
