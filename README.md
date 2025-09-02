@@ -22,8 +22,8 @@ Tujuan utamanya adalah menyediakan pondasi standar agar pengembangan lebih konsi
 
 1. **Clone repository**
    ```bash
-   git clone https://github.com/your-org/base-nextjs.git
-   cd base-nextjs
+   git clone https://github.com/aangardam/base-project.git
+   cd base-project
    ```
 
 2. **Install dependencies**
@@ -35,6 +35,7 @@ Tujuan utamanya adalah menyediakan pondasi standar agar pengembangan lebih konsi
    yarn install
    ```
 3. **Setup environment variables**
+
    Buat file .env.local di root project:
    ```env
     # API Configuration
