@@ -35,7 +35,8 @@ Tujuan utamanya adalah menyediakan pondasi standar agar pengembangan lebih konsi
    yarn install
    ```
 3. **Setup environment variable**
-Buat file .env.local di root project:
+    Buat file .env.local di root project:
+
    ```bash
     # API Configuration
     NEXT_PUBLIC_API_URL="https://base-project-be.vercel.app/api/v1/"
