@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Base Project Next.js
 
-## Getting Started
+Proyek ini dibuat sebagai **base project** yang mengacu pada [Standarisasi Next.js](https://www.notion.so/Standarisasi-Next-Js-1d8bec233321805bac23c3ef20bd3099).  
+Tujuan utamanya adalah menyediakan pondasi standar agar pengembangan lebih konsisten, mudah dikelola, dan scalable.  
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📌 Fitur Utama
+- **TypeScript** untuk type safety
+- **TailwindCSS** untuk styling
+- **React Query (TanStack Query)** untuk data fetching & state management
+- **Zod** + **React Hook Form** untuk validasi form
+- **Axios** dengan Request Adapter untuk request API standar
+- **Zustand** untuk global state management
+- Struktur folder mengikuti standarisasi yang telah ditentukan
+- Contoh implementasi **Authentication (Login)**
+- Contoh crud sederhana dengan **React Query**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⚙️ Persiapan & Instalasi
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Clone repository**
+   ```bash
+   git clone https://github.com/your-org/base-nextjs.git
+   cd base-nextjs
+   ```
 
-## Learn More
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+   atau
+   ```bash
+   yarn install
+   ```
+3. **Setup environment variable**
+   ```bash
+   cp .env.example .env.local
+   ```
+4. **Start development server**
+   ```bash
+   npm run dev
+   ```
+   atau
+   ```bash
+   yarn dev
+   ```  
+   lalu buka browser dan masuk ke `http://localhost:3000`
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔑 Login
+Gunakan kredensial berikut untuk mengakses halaman login:
+- Username: `admin.dummy@gmail.com`
+- Password: `Admin123_`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📝 Dokumentasi
+Detail aturan coding, guideline, dan standar bisa dilihat di:
+👉 Standarisasi Next.js (https://www.notion.so/Standarisasi-Next-Js-1d8bec233321805bac23c3ef20bd3099)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📄 Lisensi
+Proyek ini menggunakan lisensi MIT.
+Silakan digunakan dan dikembangkan sesuai kebutuhan.
+
