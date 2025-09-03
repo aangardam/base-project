@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-empty-object-type */
 import { useUserStore } from '@/shared/store/user.store';
 import axios, {
     AxiosError,
@@ -27,7 +25,6 @@ export class RequestAdapter {
         this.interceptRequest = this.interceptRequest.bind(this);
         this.interceptResponse = this.interceptResponse.bind(this);
         this.handleError = this.handleError.bind(this);
-        // this.sendLogToBackend = this.sendLogToBackend.bind(this);
 
         this.adapter.interceptors.request.use(this.interceptRequest);
         this.adapter.interceptors.response.use(
@@ -35,25 +32,6 @@ export class RequestAdapter {
             this.handleError,
         );
     }
-
-    // private async sendLogToBackend(log: any): Promise<void> {
-    //     try {
-    //         await this.sendPostRequest('/log/audit/add', {
-    //             duration: log.data.log.duration,
-    //             ipAddress: log.data.log.ipAddress,
-    //             memoryUsage: log.data.log.memoryUsage,
-    //             typeExec: 'frontend',
-    //             method: log.config.method,
-    //             path: log.config.url,
-    //             status: log.status,
-    //             time: new Date(),
-    //             reqBody: JSON.parse(log.config.data),
-    //             respBody: log.data,
-    //         });
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
 
     private async interceptRequest(
         config: InternalAxiosRequestConfig,
@@ -70,19 +48,6 @@ export class RequestAdapter {
     private async interceptResponse(
         response: AxiosResponse,
     ): Promise<AxiosResponse> {
-        // Log certain requests
-        // if (
-        //     (response.status === 201 && response.config.method === 'post') ||
-        //     (response.status === 200 && response.config.method === 'put') ||
-        //     (response.status === 200 &&
-        //         response.config.method === 'delete' &&
-        //         !response.config.params?.filename) ||
-        //     response.status >= 400 ||
-        //     (response.status === 401 && response.config.method === 'get')
-        // ) {
-        //     await this.sendLogToBackend(response);
-        // }
-
         // Handle session expiration
         if (response.status === 401 || response.status === 403) {
             useUserStore.getState().logout();
@@ -93,10 +58,7 @@ export class RequestAdapter {
     }
 
     private async handleError(error: AxiosError): Promise<AxiosError> {
-        // Send log to backend if not a log request
-        // await this.sendLogToBackend(error.response);
-
-       
+        
         const isUnauthorized = error.response?.status === 401;
         const isForbiden = error.response?.status === 403;
 

@@ -15,19 +15,12 @@ const decrypt = (value: string) => {
     return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 };
 
-type MenuPermissions = {
-    funtion:string[];
-}
 
 type UserTypes = {
     user: any;
-    role: any;
     token: string | null;
-    menuPermissions: MenuPermissions;
-    setRole: (role: any) => void;
     setUser: (user: any) => void;
     setToken: (token: string) => void;
-    setMenuPermissions: (menuPermissions: MenuPermissions) => void;
     logout: () => void;
 }
 
@@ -37,24 +30,14 @@ export const useUserStore = create<UserTypes>()(
     persist(
         (set) => ({
             user:null,
-            role:null,
             token: null,
-            menuPermissions: {
-                funtion:[],
-            },
             setUser: (user: unknown) => {
                 set({ user });
-            },
-            setRole: (role: unknown) => {
-                set({ role });
             },
             setToken: (token: string) => {
                 set({ token });
             },
            
-            setMenuPermissions: (menuPermissions: MenuPermissions) => {
-                set({ menuPermissions });
-            },
             logout: () => {
                 logoutChannel.postMessage("logout");
                 localStorage.removeItem('user-storage');

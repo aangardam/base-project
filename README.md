@@ -77,6 +77,9 @@ Gunakan kredensial berikut untuk mengakses halaman login:
 Detail aturan coding, guideline, dan standar bisa dilihat di:
 👉 [Standarisasi Next.js](https://www.notion.so/Standarisasi-Next-Js-1d8bec233321805bac23c3ef20bd3099)
 
+Jika akan memulai dari 0 silahkan baca [dokumentasi Next.js](https://nextjs.org/docs/getting-started)
+atau bisa mengikuti panduan [Insatallasi Next.js](https://www.notion.so/Standarisasi-Next-Js-1d8bec233321805bac23c3ef20bd3099)
+
 ---
 
 ## 📄 Lisensi
